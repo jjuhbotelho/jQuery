@@ -1,4 +1,4 @@
-/* Cria uma animação, e após podemos passar u novo parâmetro para velocidade */
+/* Cria uma animação, e após podemos passar u novo parâmetro para velocidade 
 $('a').click(function(){
     $('.modal')
     .animate({
@@ -9,5 +9,31 @@ $('a').click(function(){
     .animate({
         height:300
     }, 1200);
-});
+});*/
 
+/* Fade out tira a opacidade do elemente e aplica display:none 
+$('.btn').click(function(){
+    $('.modal').fadeOut();
+});
+$('.abrir-modal').click(function(){
+    $('.modal').fadeIn();
+});*/
+/* Hide esconde o elemento no canto 
+$('.btn').click(function(){
+    $('.modal').hide(500);
+});
+$('.abrir-modal').click(function(){
+    $('.modal').show(500);
+});*/
+/* Slide Up sobe desaparecendo, Slide Down desce aparecendo
+$('.btn').click(function(){
+    $('.modal').slideUp(500);
+});
+$('.abrir-modal').click(function(){
+    $('.modal').slideDown(500);
+});*/
+$('a').click(function(){
+    $('.modal').slideToggle(function(){
+        $('a').click();
+    });
+});
