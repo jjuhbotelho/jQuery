@@ -14,7 +14,19 @@ $('h2').click(function(){
 $('h2').click(function(){
     $(this).parent().parent().css('background' , 'blue');
 });*/
-/* Findo procura o elemento dentro dos filhos */
+/* Find procura o elemento dentro dos filhos 
 $('section').click(function(){
     $(this).find('p').css('background' , 'blue');
-});
+});*/
+/* First seleciona apenas o primeiro elemento 
+$('.btn').first().css('background' , 'blue');*/
+/* Last seleciona apenas o último elemento 
+$('.btn').last().css('background' , 'blue');*/
+/* Prev seleciona o elemento anterior 
+$('.btn').prev().css('background' , 'pink');*/
+/* Next seleciona o próximo elemento 
+$('.btn').next().css('background' , 'pink');*/
+/* Eq seleciona relacionado ao Index 
+$('a').eq(1).css('background' , 'violet');*/
+/* Not remove da seleção */
+$('a').not('.abrir-modal').css('background' , 'pink');
