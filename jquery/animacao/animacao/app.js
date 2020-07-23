@@ -1,4 +1,4 @@
-/* Cria uma animação, e após podemos passar u novo parâmetro para velocidade 
+/* Cria uma animação, e após podemos passar um novo parâmetro para velocidade
 $('a').click(function(){
     $('.modal')
     .animate({
@@ -9,9 +9,9 @@ $('a').click(function(){
     .animate({
         height:300
     }, 1200);
-});*/
+});*/ 
 
-/* Fade out tira a opacidade do elemente e aplica display:none 
+/* Fade out tira a opacidade do elemento e aplica display:none 
 $('.btn').click(function(){
     $('.modal').fadeOut();
 });
