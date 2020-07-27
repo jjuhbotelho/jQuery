@@ -29,12 +29,11 @@ ul li a {
 	letter-spacing: 2px;
 }
 
-ul li a.active {
+ul li a.active{
 	background: #56CC9D;
 	color: white;
-	border-color: #56CC9D;
 }
-	
+
 h1, h2, h3 {
 	font-family: 'Playfair Display';
 	font-weight: 900;
@@ -81,8 +80,22 @@ img {
 	float: right;
 }
 
-.item {
+.js .item {
 	overflow: hidden;
+	opacity: 0;
+	visibility: hidden;
+	transform: translate3d(-50px,0,0);
+	position: absolute;
+	top:0;
+}
+
+.js .item.active{
+	opacity: 1;
+	visibility: visible;
+	transition: .3s;
+	transform: translate3d(0px,0,0);
+	position: relative;
+	top: auto;
 }
 
 .item-img {
@@ -128,37 +141,3 @@ img {
 	width: 50%;
 	float: left;
 }
-
-.js .item {
-	opacity: 0;
-	visibility: hidden;
-	transform: translate3d(-50px,0,0);
-	position: absolute;
-	top: 0;
-}
-
-.js .item.active {
-	opacity: 1;
-	visibility: visible;
-	transition: .3s;
-	position: relative;
-	top: auto;
-	transform: translate3d(0px,0,0);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
