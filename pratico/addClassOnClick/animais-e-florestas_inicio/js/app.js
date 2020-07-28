@@ -1,4 +1,29 @@
-$(document).ready(function(){
+$('[data-group]').each(function(){
+    var $allTarget = $(this).find('[data-target]'),
+        $allClick = $(this).find('[data-click]'),
+        activeClass = 'active';
+
+        $allTarget.first().addClass('active');
+        $allClick.first().addClass('active');
+
+        $allClick.click(function(e){
+            e.preventDefault();
+
+            var id = $(this).data('click'),
+                $target = $('[data-target="' + id + '"]');
+            
+            $allClick.removeClass(activeClass);    
+            $allTarget.removeClass(activeClass);
+        
+            $target.addClass(activeClass);
+            $(this).addClass(activeClass);
+        });
+});
+
+
+//---------------Código não otimizado--------------
+
+/*$(document).ready(function(){
     var classActive = 'active';
 
     $('.animais .tab-menu a').first().addClass(classActive);
@@ -26,5 +51,5 @@ $(document).ready(function(){
         $(this).addClass(classActive);
         $(itemId).addClass(classActive);
     });
-});
+});*/
 
