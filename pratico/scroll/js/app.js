@@ -39,3 +39,20 @@ $('.logo').click(function(e){
 		scrollTop: 0
 	}, 500);
 });
+
+$('section').each(function(){
+	var height = $(this).height(),
+		offsetTop = $(this).offset().top,
+		menuHeight = $('.menu').innerHeight(),
+		id = $(this).attr('id'),
+		$itemMenu = $('a[href="#' + id + '"]');
+	
+	$(window).scroll(function(){
+		var scrollTop = $(window).scrollTop();
+		if(offsetTop < scrollTop && offsetTop + height - menuHeight > scrollTop){
+			$itemMenu.addClass('active');
+		}else {
+			$itemMenu.removeClass('active');
+		}
+	});
+});
