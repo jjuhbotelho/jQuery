@@ -1,3 +1,5 @@
+/* -------------------- Classe "active" adicionada com Click ---------------------- */
+
 $('[data-group]').each(function(){
     var $allTarget = $(this).find('[data-target]'),
         $allClick = $(this).find('[data-click]'),

@@ -1,3 +1,5 @@
+/* -------------------- Classe "active" adicionada com Click ---------------------- */
+
 $('[data-group]').each(function(){
 	var $allTarget = $(this).find('[data-target]'),
 			$allClick = $(this).find('[data-click]'),
@@ -20,7 +22,7 @@ $('[data-group]').each(function(){
 	});
 });
 
-/* ----------------- Scroll Suave ----------------- */
+/* ----------------------- Scroll Suave ----------------------- */
 $('.menu-nav a[href^="#"]').click(function(e){
 	e.preventDefault();
 	var id = $(this).attr('href'),
@@ -32,13 +34,15 @@ $('.menu-nav a[href^="#"]').click(function(e){
 	}, 500);
 });
 
-/* ----------------- Scroll de Volta pro Topo ----------------- */
+/* ----------------------- Scroll de Volta pro Topo ----------------------- */
 $('.logo').click(function(e){
 	e.preventDefault();
 	$('html, body').animate({
 		scrollTop: 0
 	}, 500);
 });
+
+/* ----------------------- Animação no menu com scroll -----------------------*/
 
 $('section').each(function(){
 	var height = $(this).height(),
@@ -56,6 +60,8 @@ $('section').each(function(){
 		}
 	});
 });
+
+/* ------------------------------------- Botão Mobile ---------------------------------------- */
 
 $('.mobile-btn').click(function(){
 	$(this).toggleClass('active');
