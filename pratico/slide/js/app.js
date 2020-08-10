@@ -1,3 +1,19 @@
+//Debounce do Lodash
+
+debounce = function(func, wait, immediate){
+    var timeout;
+    return function(){
+        var context = this, args = arguments;
+        var later = function(){
+            if (!immediate) func.apply(context , args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+};
+
 /* -------------------- Mudar Tab ao Click ---------------------- */
 
 $('[data-group]').each(function(){
@@ -50,14 +66,14 @@ $('section').each(function(){
 		id = $(this).attr('id'),
 		$itemMenu = $('a[href="#' + id + '"]');
 	
-	$(window).scroll(function(){
+	$(window).scroll(debounce(function(){
 		var scrollTop = $(window).scrollTop();
 		if(offsetTop < scrollTop && offsetTop + height - menuHeight > scrollTop){
 			$itemMenu.addClass('active');
 		}else {
 			$itemMenu.removeClass('active');
 		}
-	});
+	}, 200));
 });
 
 /* ------------------------------------- Botão Mobile ---------------------------------------- */
@@ -65,60 +81,62 @@ $('section').each(function(){
 $('.mobile-btn').click(function(){
 	$(this).toggleClass('active');
 	$('.mobile-menu').toggleClass('active');
-})
+});
 
 
 /*------------------------------------- Slide -------------------------------------*/
+(function(){
+	function slider(sliderName , velocidade){
+		var sliderClass = '.' + sliderName,
+			activeClass = 'active',
+			rotate = setInterval(rotacionarSlide, velocidade);
 
-function slider(sliderName , velocidade){
-	var sliderClass = '.' + sliderName,
-		activeClass = 'active',
-		rotate = setInterval(rotacionarSlide, velocidade);
+		$(sliderClass + ' > :first').addClass(activeClass);
+		$(sliderClass).hover(function(){
+			clearInterval(rotate);
+		}, function(){
+			rotate = setInterval(rotacionarSlide, velocidade);
+		});
 
-	$(sliderClass + ' > :first').addClass(activeClass);
-	$(sliderClass).hover(function(){
-		clearInterval(rotate);
-	}, function(){
-		rotate = setInterval(rotacionarSlide, velocidade);
-	});
+		function rotacionarSlide() {
+			var activeSlide = $( sliderClass + '> .' + activeClass),
+				nextSlide = activeSlide.next();
 
-	function rotacionarSlide() {
-		var activeSlide = $( sliderClass + '> .' + activeClass),
-			nextSlide = activeSlide.next();
+				if(nextSlide.length == 0){
+					nextSlide = $(sliderClass + ' > :first');
+				}
+				activeSlide.removeClass(activeClass);
+				nextSlide.addClass(activeClass);
+		}
 
-			if(nextSlide.length == 0){
-				nextSlide = $(sliderClass + ' > :first');
-			}
-			activeSlide.removeClass(activeClass);
-			nextSlide.addClass(activeClass);
 	}
-
-}
-
-slider('introducao' , 500);
+	slider('introducao' , 500);
+})();
 
 //Animação dos botões de menu com Scroll
+(function(){
+	var $target = $('[data-anime="scroll"]'),
+		animationClass = 'animate',
+		offset = $(window).height() * 3/4; 
 
-var $target = $('[data-anime="scroll"]'),
-	animationClass = 'animate',
-	offset = $(window).height() * 3/4; 
+	function animeScroll(){
+		var documentTop = $(document).scrollTop();
 
-function animeScroll(){
-	var documentTop = $(document).scrollTop();
+		$target.each(function(){
+			var itemTop = $(this).offset().top;
 
-	$target.each(function(){
-		var itemTop = $(this).offset().top;
+			if (documentTop > itemTop - offset){
+				$(this).addClass(animationClass);
+			} else {
+				$(this).removeClass(animationClass);
+			}	
+		});
+	}
 
-		if (documentTop > itemTop - offset){
-			$(this).addClass(animationClass);
-		} else {
-			$(this).removeClass(animationClass);
-		}	
-	});
-}
-
-$(document).scroll(function(){
 	animeScroll();
-});
 
+	$(document).scroll(debounce(function(){
+		animeScroll();
+	}, 200));
+})();
 
